@@ -1,0 +1,31 @@
+name: Weekly Trello QA Summary
+
+on:
+  schedule:
+    - cron: '30 3 * * 5' # Every Friday 9:00 AM IST (3:30 UTC)
+  workflow_dispatch:
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run script
+      env:
+        TRELLO_KEY: ${{ secrets.TRELLO_KEY }}
+        TRELLO_TOKEN: ${{ secrets.TRELLO_TOKEN }}
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      run: python Bug_report.py
