@@ -7,9 +7,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # === CONFIGURATION ===
-TRELLO_KEY = os.getenv('TRELLO_KEY')
-TRELLO_TOKEN = os.getenv('TRELLO_TOKEN')
-SLACK_WEBHOOK_URL = os.getenv('SLACK_WEBHOOK_URL')
+TRELLO_KEY = os.getenv('TRELLO_KEY').strip()
+TRELLO_TOKEN = os.getenv('TRELLO_TOKEN').strip()
+SLACK_WEBHOOK_URL = os.getenv('SLACK_WEBHOOK_URL').strip()
 BOARD_ID = 'xjZb8QlW'
 
 # Lists to track
